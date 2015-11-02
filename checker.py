@@ -1,9 +1,9 @@
 import urllib
 
 versionFile = "https://raw.githubusercontent.com/fradaloisio/versions_test/master/VERSION"
-lastVersion = urllib.urlopen(versionFile).read()
+lastVersion = str(urllib.urlopen(versionFile).read())
 
-lastVersion = str(lastVersion.split('\"')[1])
+#lastVersion = str(lastVersion.split('\"')[1])
 
 currentFile = open("VERSION", "r")
 #currentVersion = currentFile.readline()
