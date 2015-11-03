@@ -1,18 +1,17 @@
 import urllib
 
-versionFile = "https://raw.githubusercontent.com/fradaloisio/versions_test/master/VERSION"
-lastVersion = str(urllib.urlopen(versionFile).read())
+def cleanVersion(self):
+    if self.__contains__("\""):
+        return self.split('\"')[1]
+    else:
+        return self
 
-if lastVersion.__contains__("\""):
-    lastVersion = str(lastVersion.split('\"')[1])
+versionFile = "https://raw.githubusercontent.com/fradaloisio/versions_test/master/VERSION"
+lastVersion = cleanVersion(urllib.urlopen(versionFile).read())
 
 currentFile = open("VERSION", "r")
-currentVersion = currentFile.readline()
-while "VERSION" not in currentVersion:
-    currentVersion = currentFile.readline()
-
-if currentVersion.__contains__("\""):
-    currentVersion = str(currentVersion.split('\"')[1])
+currentVersion = cleanVersion(currentFile.readline())
+currentFile.close()
 
 if currentVersion == lastVersion:
     print("Nice!")
